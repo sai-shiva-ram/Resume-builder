@@ -90,7 +90,7 @@ function generateResume(name, email, phone, school, degree, gradYear, languagesk
 
     document.getElementById('resumeContent').innerHTML = resumeContent;
 
-    const qrValue = `https://github.com/sai-shiva-ram/Resume-builder//resume.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&school=${encodeURIComponent(school)}&degree=${encodeURIComponent(degree)}&gradYear=${encodeURIComponent(gradYear)}&languagesknown=${encodeURIComponent(languagesknown.join(','))}&company=${encodeURIComponent(company)}&role=${encodeURIComponent(role)}&duration=${encodeURIComponent(duration)}`;
+    const qrValue = 'https://sai-shiva-ram.github.io/Resume-builder//resume.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&school=${encodeURIComponent(school)}&degree=${encodeURIComponent(degree)}&gradYear=${encodeURIComponent(gradYear)}&languagesknown=${encodeURIComponent(languagesknown.join(','))}&company=${encodeURIComponent(company)}&role=${encodeURIComponent(role)}&duration=${encodeURIComponent(duration)}`;
 
     // Generate QR Code
     const qr = new QRious({
