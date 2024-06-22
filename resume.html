@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Resume</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Resume</h1>
+        <div id="resumeContent"></div>
+        <button id="downloadBtn" onclick="downloadResume()">Download Resume</button>
+        <button id="submitBtn" onclick="submitResume()">Submit Resume</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('name'),
+                email: params.get('email'),
+                phone: params.get('phone'),
+                school: params.get('school'),
+                degree: params.get('degree'),
+                gradYear: params.get('gradYear'),
+                languagesknown: params.get('languagesknown'),
+                company: params.get('company'),
+                role: params.get('role'),
+                duration: params.get('duration')
+            };
+        }
+
+        function displayResume() {
+            const { name, email, phone, school, degree, gradYear, languagesknown, company, role, duration } = getQueryParams();
+            const resumeContent = `
+                <div class="section contact-info">
+                    <h2>Contact Information</h2>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Phone:</strong> ${phone}</p>
+                </div>
+                <div class="section education">
+                    <h2>Education</h2>
+                    <p><strong>School:</strong> ${school}</p>
+                    <p><strong>Degree:</strong> ${degree}</p>
+                    <p><strong>Graduation Year:</strong> ${gradYear}</p>
+                </div>
+                <div class="section skills">
+                    <h2>Skills</h2>
+                    <p><strong>Languages Known:</strong> ${languagesknown}</p>
+                </div>
+                <div class="section experience">
+                    <h2>Work Experience</h2>
+                    <p><strong>Company:</strong> ${company}</p>
+                    <p><strong>Role:</strong> ${role}</p>
+                    <p><strong>Duration:</strong> ${duration}</p>
+                </div>
+            `;
+
+            document.getElementById('resumeContent').innerHTML = resumeContent;
+        }
+
+        function downloadResume() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            const { name, email, phone, school, degree, gradYear, languagesknown, company, role, duration } = getQueryParams();
+            
+            // Add content to PDF
+            doc.setFontSize(22);
+            doc.text("Resume", 20, 20);
+            doc.setFontSize(16);
+            doc.text("Contact Information", 20, 30);
+            doc.setFontSize(14);
+            doc.text(`Name: ${name}`, 20, 40);
+            doc.text(`Email: ${email}`, 20, 50);
+            doc.text(`Phone: ${phone}`, 20, 60);
+            
+            doc.setFontSize(16);
+            doc.text("Education", 20, 80);
+            doc.setFontSize(14);
+            doc.text(`School: ${school}`, 20, 90);
+            doc.text(`Degree: ${degree}`, 20, 100);
+            doc.text(`Graduation Year: ${gradYear}`, 20, 110);
+            
+            doc.setFontSize(16);
+            doc.text("Skills", 20, 130);
+            doc.setFontSize(14);
+            doc.text(`Languages Known: ${languagesknown}`, 20, 140);
+            
+            doc.setFontSize(16);
+            doc.text("Work Experience", 20, 160);
+            doc.setFontSize(14);
+            doc.text(`Company: ${company}`, 20, 170);
+            doc.text(`Role: ${role}`, 20, 180);
+            doc.text(`Duration: ${duration}`, 20, 190);
+            
+            // Save the PDF
+            doc.save('resume.pdf');
+        }
+
+        window.onload = displayResume;
+    </script>
+</body>
+</html>
+resume.html
