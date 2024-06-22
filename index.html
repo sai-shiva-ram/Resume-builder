@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Builder</h1>
+        <form id="resumeForm">
+            <h2>Personal Information</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+
+            <h2>Education</h2>
+            <label for="school">School:</label>
+            <input type="text" id="school" name="school" required>
+
+            <label for="degree">Degree:</label>
+            <input type="text" id="degree" name="degree" required>
+
+            <label for="gradYear">Graduation Year:</label>
+            <input type="number" id="gradYear" name="gradYear" required min="1900" max="2099">
+
+            <h2>Skills</h2>
+            <label for="languagesknown">Languages Known:</label>
+            <input type="text" id="languagesknown" name="languagesknown" required>
+
+            <h2>Work Experience</h2>
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company" required>
+
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" required>
+
+            <label for="duration">Duration:</label>
+            <input type="text" id="duration" name="duration" required>
+
+            <button type="button" onclick="validateAndGenerate()">Generate QR Code</button>
+        </form>
+
+        <div id="resumeOutput" class="resume-output">
+            <h2>Generated Resume</h2>
+            <div id="resumeContent"></div>
+            <canvas id="qrCode"></canvas>
+            <div id="eligibilityMessage"></div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
